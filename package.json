@@ -1,0 +1,35 @@
+{
+  "name": "play-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && concurrently \"npx swc src --out-dir dist --watch\" \"nodemon --exec node -r @swc-node/register dist/index.js\"",
+    "build": "npm run clean && npx swc --delete-dir-on-start -s -d dist src",
+    "clean": "npx rimraf dist",
+    "start": "npm run build && node -r @swc-node/register dist/server.js",
+    "db:gen:user": "npx drizzle-kit generate:mysql --config=user.config.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@swc-node/register": "^1.6.8",
+    "@swc/cli": "^0.1.63",
+    "@swc/core": "^1.3.96",
+    "@types/node": "^20.9.2",
+    "drizzle-kit": "^0.20.4",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@biomejs/biome": "^1.3.3",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.0",
+    "mysql2": "^3.6.3",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.5"
+  }
+}
